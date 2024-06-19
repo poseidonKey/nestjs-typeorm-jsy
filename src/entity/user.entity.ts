@@ -70,7 +70,21 @@ export class UserModel {
   @Generated('uuid')
   additionalId: string;
 
-  @OneToOne(() => ProfileModel, (profile) => profile.user)
+  @OneToOne(() => ProfileModel, (profile) => profile.user, {
+    // relation 을 자동으로 가져오게 설정한다. false 가 기본
+    eager: true,
+    // 저장할 때 relation 을 한번에 같이 저장여부, 기본은 false
+    cascade: true,
+    // null 가능 여부, 기본은 true
+    nullable: true,
+    // 관계가 삭제 했을 때
+    // no action -> 아무것도 안함
+    // cascade-> 참조하는 Row도 같이 삭제
+    // set null -> 참조하는 Row에서 참조 id를 null로 변경
+    // set default -> 기본 세티으로 설정(테이블의 기본 세팅)
+    // restrict -> 잠조하고 있는 Row가 있는 경우 참조 당하는 Row 삭제 불가.
+    onDelete: 'DEFAULT',
+  })
   // @JoinColumn()
   profile: ProfileModel;
 
