@@ -28,10 +28,37 @@ export class AppController {
       //   profile: true,
       //   posts: true,
       // },
-      // select: {
-      //   id: true,
-      //   title: true,
+      /**
+       * 어떤 프로퍼티를 선택할 지
+       * 기본은 모든 프로퍼티를 가져온다
+       * select 를 정의하면 정의 된 프로퍼티들만 가져오게 된다.
+       */
+      select: {
+        id: true,
+        email: true,
+        createdAt: true,
+        profile: {
+          id: true,
+        },
+      },
+      /**
+       * 필터링 할 조건을 입력하게 된다
+       * 기본은 and 조건으로 처리
+       */
+      // where: {
+      //   id: 1,
+      //   profile: { id: 1 },
       // },
+      // []로 처리하면 or로 가져온다
+      // where: [{ id: 1 }, { version: 1 }],
+      order: {
+        // id: 'ASC',
+        id: 'DESC',
+      },
+      // 처음 데이터를 몇 개 제외한다. 기본 0. 모두 가져온다.
+      skip: 0,
+      // 데이터를 몇 개 가져올까 기본 0. 모두 가져온다.
+      take: 0,
     });
   }
   @Post('users')

@@ -72,7 +72,7 @@ export class UserModel {
 
   @OneToOne(() => ProfileModel, (profile) => profile.user, {
     // relation 을 자동으로 가져오게 설정한다. false 가 기본
-    eager: true,
+    eager: false,
     // 저장할 때 relation 을 한번에 같이 저장여부, 기본은 false
     cascade: true,
     // null 가능 여부, 기본은 true
